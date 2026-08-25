@@ -11,3 +11,11 @@
 
 
 -create a login page
+-install axios
+-CORS ->install cors in backend=>add middleware with configuration: origin, credentials
+-when you are makin api calls pass axios{with credentials : true}, so that you get the token
+-install redux toolkit , react redux
+-configure store => provider =>create slice =>add reducer to store
+-add redux devtools extension in chrome
+-Navbar should update as soon as use logs in
+-add constants file for BASR URL + create components folder

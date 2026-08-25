@@ -1,6 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const NavBar = () => {
+
+  const user =useSelector((store)=>store.user);
+  
+
   return (
     <div>
       <div className="navbar bg-base-300 shadow-sm">
@@ -8,12 +13,13 @@ const NavBar = () => {
     <a className="btn btn-ghost text-xl">🧑‍💻 DevTinder</a>
   </div>
   <div className="flex gap-2">
-    <div className="dropdown dropdown-end m-5">
+    {user&& <div className="dropdown dropdown-end m-5 flex">
+      <p className='mx-2 my-2'>Welcome, {user.firstName}</p>
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            alt="User Photo"
+            src= {user.photoUrl} />
         </div>
       </div>
       <ul
@@ -28,7 +34,7 @@ const NavBar = () => {
         <li><a>Settings</a></li>
         <li><a>Logout</a></li>
       </ul>
-    </div>
+    </div>}
   </div>
 </div>
     </div>
