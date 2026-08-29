@@ -26,3 +26,4 @@
 -build the user card on feed
 -Edit profile feature
 -see all my connection
+-see all connection requests received
