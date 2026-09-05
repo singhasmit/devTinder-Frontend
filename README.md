@@ -28,3 +28,14 @@
 -see all my connection
 -see all connection requests received
 -feature - accept/ reject connection request
+
+
+
+# DEPLOYMENT
+
+    -signup on aws
+    -Launch instance
+    -ssh i
+    -Install node version
+    -git clone you frontend first
+    
