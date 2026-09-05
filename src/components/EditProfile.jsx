@@ -1,5 +1,4 @@
 import { useState } from "react";
-import UserCard from "./userCard";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import axios from "axios";
