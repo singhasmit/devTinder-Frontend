@@ -37,5 +37,15 @@
     -Launch instance
     -ssh i
     -Install node version
-    -git clone you frontend first
-    
+    -git clone 
+    -Frontend
+        ->install dependencies (npm i)
+        ->run build
+        ->sudo apt update
+        ->sudo apt install ngnix
+        ->sudo systemctl start nginx
+        ->sudo systemctl enable nginx
+        ->copy code from dist folder to /var/www/html/  
+            sudo scp -r dist/* /var/www/html/
+        ->enable port 80 of your instance
+        
