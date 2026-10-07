@@ -3,23 +3,32 @@ import React, { useEffect } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/feedSlice";
+import { removeUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 import UserCard from "./UserCard";
-
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
-  console.log(feed);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const getFeed = async () => {
     if (feed) return;
+
     try {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
+
       dispatch(addFeed(res.data));
     } catch (err) {
-      //handle error
+      if (err.response?.status === 401) {
+        dispatch(removeUser());
+        navigate("/login", { replace: true });
+        return;
+      }
+
+      console.error(err);
     }
   };
 
@@ -27,16 +36,22 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  if(!feed) return <h1 className="text-center text-2xl my-10">Loading...</h1>;
-;
+  if (!feed) {
+    return <h1 className="text-center text-2xl my-10">Loading...</h1>;
+  }
 
-  if(feed.length===0) return <h1 className="flex justify-center text-2xl my-10">Ah Oh!, No new users available on the feed!!</h1>
+  if (feed.length === 0) {
+    return (
+      <h1 className="flex justify-center text-2xl my-10">
+        Ah Oh!, No new users available on the feed!!
+      </h1>
+    );
+  }
+
   return (
-    feed && (
-      <div className="flex justify-center my-10">
-        <UserCard user={feed[0]} />
-      </div>
-    )
+    <div className="flex justify-center my-10">
+      <UserCard user={feed[0]} />
+    </div>
   );
 };
 
